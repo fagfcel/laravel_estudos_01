@@ -13,9 +13,24 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/about', [MainController::class, 'about'])->name('about')->middleware([StarMiddleware::class, EndMiddleware::class]);
 // Route::get('/contact', [MainController::class, 'contact'])->name('contact');
 
-Route::middleware([StarMiddleware::class, EndMiddleware::class])->group(function(){
+// Route::middleware([StarMiddleware::class, EndMiddleware::class])->group(function(){
+//     Route::get('/', [MainController::class, 'index'])->name('index');
+//     Route::get('/about', [MainController::class, 'about'])->name('about')->withoutMiddleware([EndMiddleware::class]);
+//     Route::get('/contact', [MainController::class, 'contact'])->name('contact');
+
+// });
+
+// Route::middleware(['correr_antes'])->group(function(){
+//     Route::get('/', [MainController::class, 'index'])->name('index');
+//     Route::get('/about', [MainController::class, 'about'])->name('about');
+//     Route::get('/contact', [MainController::class, 'contact'])->name('contact');
+
+// });
+
+Route::middleware(['correr_depois'])->group(function(){
     Route::get('/', [MainController::class, 'index'])->name('index');
-    Route::get('/about', [MainController::class, 'about'])->name('about')->withoutMiddleware([EndMiddleware::class]);
+    Route::get('/about', [MainController::class, 'about'])->name('about');
     Route::get('/contact', [MainController::class, 'contact'])->name('contact');
 
 });
+
